@@ -3,6 +3,13 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import './core.js'
+
+//css 增强库
+import './style/index.less'
+import './style/tailwind.css'
+
+
 Vue.config.productionTip = false
 
 new Vue({
