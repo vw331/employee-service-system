@@ -37,7 +37,7 @@ const routes = [
     children: [
       {
         path: '/main',
-        name: 'MainIndex',
+        //name: 'MainIndex',
         component: () => import('@/views/main'),
         children: [
           {
