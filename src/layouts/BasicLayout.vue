@@ -49,10 +49,8 @@
       </div>
     </a-layout-header>
     <a-layout-content class="layout-body">
-      <a-breadcrumb style="margin: 5px 0">
-        <a-breadcrumb-item>Home</a-breadcrumb-item>
-        <a-breadcrumb-item>List</a-breadcrumb-item>
-        <a-breadcrumb-item>App</a-breadcrumb-item>
+      <a-breadcrumb style="margin: 5px 15px">
+        <a-breadcrumb-item v-for="(name, index) in routerPathNames" :key="index">{{name}}</a-breadcrumb-item>
       </a-breadcrumb>
       <div>
         <router-view/>
@@ -78,7 +76,8 @@
 
 <script>
 
-import { Menu } from 'ant-design-vue';
+import { Menu } from 'ant-design-vue'
+import { mapState } from 'vuex'
 
 const menu = [
   {  title: '首页', id: '1', to: '/main', children: null },
@@ -130,11 +129,10 @@ export default {
       visibleSidebar: false
     }
   },
-  beforeRouteUpdate () {
-    console.log('beforeRouteUpdate')
-     const matched = this.$route
-     const pathArr = matched.map(item => item.meta).filter(meta => meta.title)
-     console.log( pathArr )
+  computed: {
+    ...mapState({
+      routerPathNames: state => state.routerPath.map(item => item.meta.title ).filter(item => item) 
+    })
   },
   methods: {
     onCollapse(collapsed, type) {
@@ -148,8 +146,8 @@ export default {
     },
     closeSidebar() {
       this.visibleSidebar = false
-    }
-  },
+    },
+  }
 }
 </script>
 

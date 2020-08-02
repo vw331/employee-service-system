@@ -98,4 +98,5 @@ Vue.prototype.$info = Modal.info
 Vue.prototype.$success = Modal.success
 Vue.prototype.$error = Modal.error
 Vue.prototype.$warning = Modal.warning
+
 Vue.prototype.$https = asiox.create({ timeout: 1000 * 12 })

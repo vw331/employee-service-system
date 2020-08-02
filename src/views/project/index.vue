@@ -1,4 +1,4 @@
-<!--项目 -->
+<!--主页 -->
 <template>
   <div>
     <keep-alive>
@@ -10,6 +10,6 @@
 
 <script>
 export default {
-  name: 'ProjectIndex'
+  name: 'MainIndex'
 }
 </script>
