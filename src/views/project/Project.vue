@@ -5,7 +5,7 @@
       <a-col v-for="item in list" :key="item.id" :xs="12" :sm="8" :md="6" :lg="6" :xl="4">
         <a-card hoverable class="w-full">
           <div class="cover" slot="cover">
-            <div class="search"><a-button ghost icon="search"></a-button></div>
+            <div class="search"><a-button ghost icon="search" @click="handleToDetail(item)"></a-button></div>
             <img :alt="item.title" :src="item.img"/>
           </div>
           <a-card-meta class="text-center" :title="item.title" :description="item.description">
@@ -32,6 +32,12 @@ export default {
   data() {
     return {
       list
+    }
+  },
+  methods: {
+    handleToDetail(item) {
+      console.log(item)
+      this.$router.push({name: 'Buy', params: {id: item.id}})
     }
   }
 }

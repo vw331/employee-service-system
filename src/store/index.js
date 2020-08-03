@@ -9,7 +9,6 @@ export default new Vuex.Store({
   },
   mutations: {
     updateRoute(state, newRoute) { //更新路由状态
-      console.log(newRoute)
       state.routerPath = newRoute
     }
   },

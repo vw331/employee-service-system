@@ -37,15 +37,7 @@
         </a-row>
       </div>
       <div class="layout-header-menu">
-        <a-menu mode="horizontal" class="custom-menu" :default-selected-keys="['4']">
-          <template v-for="item in menu">
-            <a-menu-item v-if="!item.children" :key="item.id">
-              <a-icon type="user" />
-              <span class="nav-text">{{item.title}}</span>
-            </a-menu-item>
-            <sub-menu v-else :key="item.key" :menu-info="item" />
-          </template>
-        </a-menu>
+        <top-menu></top-menu>
       </div>
     </a-layout-header>
     <a-layout-content class="layout-body">
@@ -76,56 +68,16 @@
 
 <script>
 
-import { Menu } from 'ant-design-vue'
 import { mapState } from 'vuex'
-
-const menu = [
-  {  title: '首页', id: '1', to: '/main', children: null },
-  {  title: '扫描项目', id: '2', to: '/main', children: null },
-  {  title: '购买列表', id: '3', to: '/main', children: null },
-  {  title: '充值余额', id: '4', to: '/main', children: [
-    { title: '修改密码', id: '4-1', to: '/abc' },
-    { title: '消费记录', id: '4-2', to: '/efg' }
-  ]},
-  {  title: '退出', id: '5', to: '/main', children: null },
-]
-
-const SubMenu = {
-  template: `
-      <a-sub-menu :key="menuInfo.key" v-bind="$props" v-on="$listeners">
-        <span slot="title">
-          <a-icon type="mail" /><span>{{ menuInfo.title }}</span>
-        </span>
-        <template v-for="item in menuInfo.children">
-          <a-menu-item v-if="!item.children" :key="item.key">
-            <a-icon type="pie-chart" />
-            <span>{{ item.title }}</span>
-          </a-menu-item>
-          <sub-menu v-else :key="item.key" :menu-info="item" />
-        </template>
-      </a-sub-menu>
-    `,
-  name: 'SubMenu',
-  // must add isSubMenu: true
-  isSubMenu: true,
-  props: {
-    ...Menu.SubMenu.props,
-    // Cannot overlap with properties within Menu.SubMenu.props
-    menuInfo: {
-      type: Object,
-      default: () => ({}),
-    },
-  },
-};
+import TopMenu from './TopMenu'
 
 export default {
   name: 'BasicLayout',
   components: {
-    'sub-menu': SubMenu,
+    'top-menu': TopMenu
   },
   data() {
     return {
-      menu,
       visibleSidebar: false
     }
   },
@@ -146,7 +98,7 @@ export default {
     },
     closeSidebar() {
       this.visibleSidebar = false
-    },
+    }
   }
 }
 </script>

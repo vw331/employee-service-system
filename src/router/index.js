@@ -67,6 +67,35 @@ const routes = [
             name: 'Project',
             component: () => import('@/views/project/Project'),
             meta: { title: '项目中心', keepAlive: true }
+          },{
+            path: 'buy/:id',
+            name: 'Buy',
+            component: () => import('@/views/project/Buy'),
+            meta: { title: '下单' }
+          }
+        ]
+      },{
+        path: '/shopping', 
+        component: () => import('@/views/shopping'),
+        meta: { title: '购买列表' },
+        children: [
+          {
+            path: '/',
+            name: 'Shopping',
+            component: () => import('@/views/shopping/List'),
+            meta: { title: '购买列表', keepAlive: true }
+          }
+        ]
+      },{
+        path: '/user',
+        component: () => import('@/views/user'),
+        redirect: '/user/info',
+        children: [
+          {
+            path: 'info',
+            name: 'UserInfo',
+            component: () => import('@/views/user/Info'),
+            meta: { title: '我的信息' }
           }
         ]
       }
