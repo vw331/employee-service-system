@@ -1,107 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import BasicLayout from '@/layouts/BasicLayout'
 import store from '../store'
+import { Modal } from 'ant-design-vue'
+import { routes } from './routes'
 
 Vue.use(VueRouter)
-
-const routes = [
-  {
-    path: '/account',
-    component: () => import('@/views/account'),
-    redirect: '/account/login',
-    children: [
-      {
-        path: 'login',
-        name: 'Login',
-        component: () => import('@/views/account/Login'),
-        meta: {
-          title: '登录'
-        },
-      },
-      {
-        path: 'reg',
-        name: 'Reg',
-        component: () => import('@/views/account/Register'),
-        meta: {
-          title: '注册'
-        },
-      }
-    ]
-  },
-  {
-    path: '/',
-    name: 'Base',
-    component: BasicLayout,
-    redirect: '/main',
-    children: [
-      {
-        path: '/main',
-        component: () => import('@/views/main'),
-        meta: { title: '首页'},
-        children: [
-          {
-            path: '/',
-            name: 'Main',
-            component: () => import('@/views/main/Main'),
-            meta: { keepAlive: true }
-          },{
-            path: 'notice/:id',
-            name: 'Notice',
-            component: () => import('@/views/main/Notice'),
-            meta: { title: '公告' }
-          },{
-            path: 'recharge',
-            name: 'Recharge',
-            component: () => import('@/views/main/Recharge'),
-            meta: { title: '充值' }
-          }
-        ]
-      },{
-        path: '/project',
-        component: () => import('@/views/project'),
-        meta: { title: '项目'},
-        children: [
-          {
-            path: '/',
-            name: 'Project',
-            component: () => import('@/views/project/Project'),
-            meta: { title: '项目中心', keepAlive: true }
-          },{
-            path: 'buy/:id',
-            name: 'Buy',
-            component: () => import('@/views/project/Buy'),
-            meta: { title: '下单' }
-          }
-        ]
-      },{
-        path: '/shopping', 
-        component: () => import('@/views/shopping'),
-        meta: { title: '购买列表' },
-        children: [
-          {
-            path: '/',
-            name: 'Shopping',
-            component: () => import('@/views/shopping/List'),
-            meta: { title: '购买列表', keepAlive: true }
-          }
-        ]
-      },{
-        path: '/user',
-        component: () => import('@/views/user'),
-        redirect: '/user/info',
-        children: [
-          {
-            path: 'info',
-            name: 'UserInfo',
-            component: () => import('@/views/user/Info'),
-            meta: { title: '我的信息' }
-          }
-        ]
-      }
-    ]
-  }
-]
 
 const router = new VueRouter({
   mode: 'history',
@@ -111,7 +14,25 @@ const router = new VueRouter({
 
 const baseTitle = document.title
 
+// 前置守卫
+router.beforeEach((to, from, next) => {
+  if( to.path == '/logout' ){
+    Modal.confirm({
+      title: '确定要退出?',
+      onOk() {
+        console.log('OK');
+        next({ name: 'Login' })
+      },
+      onCancel() {
+        console.log('Cancel');
+      }
+    });
+  }else {
+    next()
+  }
+})
 
+// 后置守卫
 router.afterEach((to) => {
   const { title } = to.meta
   store.commit('updateRoute', to.matched)

@@ -1,7 +1,7 @@
 <!--顶部菜单-->
 <template>
-  <a-menu mode="horizontal" class="custom-menu"  @click="handleMenuItemClick" :default-selected-keys="['4']">
-    <template v-for="item in menu">
+  <a-menu mode="horizontal" class="custom-menu"  @click="handleMenuItemClick" :default-selected-keys="[onSelect]">
+    <template v-for="item in menuInfo">
       <a-menu-item v-if="!item.children" :key="item.name">
         <a-icon type="user" />
         <span class="nav-text">{{item.title}}</span>
@@ -13,18 +13,6 @@
 <script>
 import { Menu } from 'ant-design-vue'
 
-const menu = [
-  {  title: '首页',  name: 'Main', children: null },
-  {  title: '扫描项目',  name: 'Project', children: null },
-  {  title: '购买列表',  name: 'Shopping', children: null },
-  {  title: '充值余额',  name: 'Projectabc', children: null },
-  {  title: '个人信息', name: 'User', children: [
-    { title: '修改密码', name: 'abc' },
-    { title: '消费记录', name: 'efg' }
-  ]},
-  {  title: '退出', name: 'exit', children: null },
-]
-
 const SubMenu = {
   template: `
       <a-sub-menu :key="menuInfo.name" v-bind="$props" v-on="$listeners">
@@ -32,7 +20,7 @@ const SubMenu = {
           <a-icon type="mail" /><span>{{ menuInfo.title }}</span>
         </span>
         <template v-for="item in menuInfo.children">
-          <a-menu-item v-if="!item.children" :key="item.key">
+          <a-menu-item v-if="!item.children" :key="item.name">
             <a-icon type="pie-chart" />
             <span>{{ item.title }}</span>
           </a-menu-item>
@@ -58,15 +46,43 @@ export default {
   components: {
     'sub-menu': SubMenu,
   },
+  props: {
+    menuInfo: {
+      type: Array
+    },
+    onSelect: {
+      type: String,
+      default: ''
+    }
+  },
   data() {
     return {
-      menu
+      
     }
   },
   methods: {
     handleMenuItemClick({ key }) {
-      this.$router.push({ name: key })
+      this.$emit('change', key)
     }
   }
 }
-</script>>
+</script>
+
+<style lang="less" scoped>
+.custom-menu {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 0;
+
+  > li {
+    flex: 1;
+    line-height: 56px;
+    border-bottom: 0
+  }
+
+  > .ant-menu-item , .ant-menu-submenu {
+    border-right: 1px solid #f2f2f2;
+    padding: 0 30px;
+  }
+}
+</style>

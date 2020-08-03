@@ -37,7 +37,11 @@
         </a-row>
       </div>
       <div class="layout-header-menu">
-        <top-menu></top-menu>
+        <top-menu 
+          :menuInfo="menu"
+          :onSelect="onSelectKey"
+          @change="onMenuChange"
+        ></top-menu>
       </div>
     </a-layout-header>
     <a-layout-content class="layout-body">
@@ -49,7 +53,7 @@
       </div>
     </a-layout-content>
     <a-layout-footer style="textAlign: center">
-      Ant Design ©2018 Created by Ant UED
+      Copyright by 腾飞微自助平台
     </a-layout-footer>
     <a-drawer
       title="Basic Drawer"
@@ -71,6 +75,18 @@
 import { mapState } from 'vuex'
 import TopMenu from './TopMenu'
 
+const menu = [
+  {  title: '首页',  name: '/main', children: null },
+  {  title: '扫描项目',  name: '/project', children: null },
+  {  title: '购买列表',  name: '/shopping', children: null },
+  {  title: '充值余额',  name: '/main/recharge', children: null },
+  {  title: '个人信息', name: '/user', children: [
+    { title: '修改密码', name: '/user/info' },
+    { title: '消费记录', name: '/user/purchase-history' }
+  ]},
+  {  title: '退出', name: '/logout', children: null },
+]
+
 export default {
   name: 'BasicLayout',
   components: {
@@ -78,13 +94,18 @@ export default {
   },
   data() {
     return {
+      menu,
       visibleSidebar: false
     }
   },
   computed: {
     ...mapState({
       routerPathNames: state => state.routerPath.map(item => item.meta.title ).filter(item => item) 
-    })
+    }),
+    onSelectKey: function(){
+      console.log( this.$route.path )
+      return this.$route.path
+    }
   },
   methods: {
     onCollapse(collapsed, type) {
@@ -98,8 +119,12 @@ export default {
     },
     closeSidebar() {
       this.visibleSidebar = false
+    },
+    onMenuChange(path) {
+      console.log( path )
+      this.$router.push(path)
     }
-  }
+  },
 }
 </script>
 
@@ -132,22 +157,6 @@ export default {
   width: 100%;
   margin: 0 auto;
   padding: 0
-}
-.custom-menu {
-  display: flex;
-  flex-direction: row;
-  border-bottom: 0;
-
-  > li {
-    flex: 1;
-    line-height: 56px;
-    border-bottom: 0
-  }
-
-  > .ant-menu-item , .ant-menu-submenu {
-    border-right: 1px solid #f2f2f2;
-    padding: 0 30px;
-  }
 }
 .top {
   display: flex;
