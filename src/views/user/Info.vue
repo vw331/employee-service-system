@@ -67,10 +67,10 @@ export default {
 
 <style lang="less" scoped>
 .info-wrap {
-  .ant-statistic {
+  /deep/ .ant-statistic {
     margin-bottom: 15px;
   }
-  .ant-statistic-content {
+  /deep/ .ant-statistic-content {
     font-size: 14px !important
   }
 }

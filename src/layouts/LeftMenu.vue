@@ -1,6 +1,6 @@
-<!--顶部菜单-->
+<!--侧边菜单-->
 <template>
-  <a-menu mode="horizontal" class="custom-menu"  @click="handleMenuItemClick" :default-selected-keys="[onSelect]">
+  <a-menu mode="inline" theme="dark" class="left-menu"  @click="handleMenuItemClick" :default-selected-keys="[onSelect]">
     <template v-for="item in menuInfo">
       <a-menu-item v-if="!item.children" :key="item.name">
         <a-icon :type="item.icon" />
@@ -10,6 +10,7 @@
     </template>
   </a-menu>
 </template>
+
 <script>
 import { Menu } from 'ant-design-vue'
 
@@ -42,7 +43,7 @@ const SubMenu = {
 };
 
 export default {
-  name: 'TopMenu',
+  name: 'LeftMenu',
   components: {
     'sub-menu': SubMenu,
   },
@@ -57,7 +58,7 @@ export default {
   },
   data() {
     return {
-      
+
     }
   },
   methods: {
@@ -69,20 +70,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.custom-menu {
-  display: flex;
-  flex-direction: row;
-  border-bottom: 0;
-
-  > li {
-    flex: 1;
-    line-height: 56px;
-    border-bottom: 0
-  }
-
-  > .ant-menu-item , .ant-menu-submenu {
-    border-right: 1px solid #f2f2f2;
-    padding: 0 30px;
-  }
+.left-menu {
+  height: 100vh
 }
 </style>

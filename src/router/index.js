@@ -16,6 +16,7 @@ const baseTitle = document.title
 
 // 前置守卫
 router.beforeEach((to, from, next) => {
+
   if( to.path == '/logout' ){
     Modal.confirm({
       title: '确定要退出?',

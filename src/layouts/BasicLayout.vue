@@ -9,7 +9,7 @@
                 <a class="text-2xl px-4" @click="toggleSidebar" href="javascript:;"><a-icon class="align-middle" type="menu-unfold" /></a> 
               </div>
               <div class="top-center">
-                <h3 class="brand text-white">腾飞微自助平台</h3>
+                <h3 class="brand text-white">{{title}}</h3>
               </div>
               <div class="top-right">
                 <a-dropdown>
@@ -32,7 +32,7 @@
             </div>
           </a-col>
           <a-col :xs="0" :sm="0" :md="12" :lg="12" :xl="12" class="text-right">
-            <a href="javascript:;" class="px-4"><a-avatar src="http://www.95mn.com/static/index2/assets/images/users/d3.jpg" /></a>
+            <a href="javascript:;" class="px-4"><a-avatar :src="user.avatar" /></a>
           </a-col>
         </a-row>
       </div>
@@ -49,23 +49,27 @@
         <a-breadcrumb-item v-for="(name, index) in routerPathNames" :key="index">{{name}}</a-breadcrumb-item>
       </a-breadcrumb>
       <div>
-        <router-view/>
+        <transition>
+          <router-view/>
+        </transition>
       </div>
     </a-layout-content>
     <a-layout-footer style="textAlign: center">
-      Copyright by 腾飞微自助平台
+      Copyright by {{title}}
     </a-layout-footer>
     <a-drawer
-      title="Basic Drawer"
       placement="left"
       :closable="false"
       :visible="visibleSidebar"
       :maskClosable="true"
       @close="closeSidebar"
+      :bodyStyle="{padding: 0}"
     >
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
+      <left-menu
+        :menuInfo="menu"
+        :onSelect="onSelectKey"
+        @change="onMenuChange"
+      ></left-menu>
     </a-drawer>
   </a-layout>
 </template>
@@ -74,28 +78,25 @@
 
 import { mapState } from 'vuex'
 import TopMenu from './TopMenu'
+import LeftMenu from './LeftMenu'
+import menu from './menu'
 
-const menu = [
-  {  title: '首页',  name: '/main', children: null },
-  {  title: '扫描项目',  name: '/project', children: null },
-  {  title: '购买列表',  name: '/shopping', children: null },
-  {  title: '充值余额',  name: '/main/recharge', children: null },
-  {  title: '个人信息', name: '/user', children: [
-    { title: '修改密码', name: '/user/info' },
-    { title: '消费记录', name: '/user/purchase-history' }
-  ]},
-  {  title: '退出', name: '/logout', children: null },
-]
+const title = process.env.VUE_APP_TITLE;
 
 export default {
   name: 'BasicLayout',
   components: {
-    'top-menu': TopMenu
+    'top-menu': TopMenu,
+    'left-menu': LeftMenu
   },
   data() {
     return {
+      title,
       menu,
-      visibleSidebar: false
+      visibleSidebar: false,
+      user: {
+        avatar: require('@/assets/d3.jpg')
+      }
     }
   },
   computed: {
@@ -103,7 +104,6 @@ export default {
       routerPathNames: state => state.routerPath.map(item => item.meta.title ).filter(item => item) 
     }),
     onSelectKey: function(){
-      console.log( this.$route.path )
       return this.$route.path
     }
   },
@@ -121,8 +121,9 @@ export default {
       this.visibleSidebar = false
     },
     onMenuChange(path) {
-      console.log( path )
-      this.$router.push(path)
+      if( this.$route.path !== path ){
+        this.$router.push(path)
+      }
     }
   },
 }
@@ -189,4 +190,5 @@ export default {
     }
   }
 }
+
 </style>

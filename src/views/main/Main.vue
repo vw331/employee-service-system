@@ -104,7 +104,7 @@ export default {
   },
   mounted() {
     const $qrdom = this.$refs.qrcode
-    QRCode.toCanvas($qrdom, 'sample text', { width: 200 },  (error) => {
+    QRCode.toCanvas($qrdom, window.location.href, { width: 200 },  (error) => {
       if (error) console.error(error)
     })
   }

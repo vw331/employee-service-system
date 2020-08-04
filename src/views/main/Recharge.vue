@@ -11,7 +11,6 @@
           <a-input-number
             class="w-full"
             size="large"
-            autoFocus
             placeholder="请输入充值金额"
             v-decorator="['note', { rules: [{ required: true, message: 'Please input your note!' }] }]"
           />

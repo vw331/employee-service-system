@@ -1,6 +1,7 @@
 const path = require('path')
 const htmlWepackPlugin = require('html-webpack-plugin')
 
+console.log( process.env   )
 module.exports = {
   devServer: {
     disableHostCheck: true
@@ -27,5 +28,12 @@ module.exports = {
         vue$: "vue/dist/vue.esm.js", 
       }
     }
+  },
+  chainWebpack: config =>{
+    config.plugin('html')
+      .tap(args => {
+        args[0].title = process.env.VUE_APP_TITLE;
+        return args;
+      })
   },
 } 

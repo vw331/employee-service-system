@@ -79,6 +79,16 @@ export const routes = [
             name: 'Shopping',
             component: () => import('@/views/shopping/List'),
             meta: { title: '购买列表', keepAlive: true }
+          },{
+            path: ':id/scan-records',
+            name: 'ScanRecords',
+            component: () => import('@/views/shopping/ScanRecords'),
+            meta: { title: '扫描记录' }
+          },{
+            path: ':id/api-doc',
+            name: 'ApiDoc',
+            component: () => import('@/views/shopping/ApiDoc'),
+            meta: { title: 'API接口'}
           }
         ]
       },{
