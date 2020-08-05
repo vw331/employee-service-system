@@ -9,7 +9,7 @@
                 <a class="text-2xl px-4" @click="toggleSidebar" href="javascript:;"><a-icon class="align-middle" type="menu-unfold" /></a> 
               </div>
               <div class="top-center">
-                <h3 class="brand text-white">{{title}}</h3>
+                <h3 class="brand text-white text">{{title}}</h3>
               </div>
               <div class="top-right">
                 <a-dropdown>
@@ -191,4 +191,10 @@ export default {
   }
 }
 
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1s;
+}
+.fade-enter, .fade-leave-to{
+  opacity: 0;
+}
 </style>

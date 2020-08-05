@@ -2,7 +2,7 @@
 <template>
   <div class="px-4">
     <a-row :gutter="[16, 16]">
-      <a-col v-for="item in list" :key="item.id" :xs="12" :sm="8" :md="6" :lg="6" :xl="4">
+      <a-col v-for="item in list" :key="item.id" :xs="12" :sm="8" :md="6" :lg="4" :xl="4">
         <a-card hoverable class="w-full">
           <div class="cover" slot="cover">
             <div class="search"><a-button ghost icon="search" @click="handleToDetail(item)"></a-button></div>

@@ -1,4 +1,5 @@
 import BasicLayout from '@/layouts/BasicLayout'
+import MobileLayout from '@/layouts/MobileLayout'
 
 export const routes = [
   {
@@ -23,8 +24,22 @@ export const routes = [
         },
       }
     ]
-  },
-  {
+  },{  //移动端
+    path: '/m',  
+    name: 'Mobile',
+    component: MobileLayout,
+    redirect: '/m/shopping-list',
+    children: [
+      {
+        path: 'shopping-list',
+        name: 'ShoppingList',
+        component: () => import('@/views/m.project/ShoppingList'),
+        meta: {
+          title: '购买列表'
+        }
+      }
+    ]
+  },{
     path: '/',
     name: 'Base',
     component: BasicLayout,

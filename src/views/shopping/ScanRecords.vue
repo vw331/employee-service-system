@@ -20,7 +20,7 @@
           </a-col>
         </a-row>
 
-        <a-row class="mb-4" :gutter="16">
+        <a-row class="mb-4" :gutter="[16, 16]">
           <a-col :xs="24" :sm="12" :md="6">
             <a-card class="transition duration-500 ease-in-out transform hover:-translate-y-1 bg-red-500" :bordered="false">
               <a-statistic

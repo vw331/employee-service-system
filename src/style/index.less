@@ -1,2 +1,13 @@
 @import '~ant-design-vue/dist/antd.less';
 @import './theme.less'; // 用于覆盖上面定义的变量
+
+.ant-table-wrapper{
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch
+}
+.ant-table-tbody>tr>td, .ant-table-thead>tr>th {
+  overflow-wrap: break-word;
+  white-space: pre
+}

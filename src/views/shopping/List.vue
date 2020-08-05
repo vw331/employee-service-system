@@ -31,8 +31,8 @@
 <script>
 
 const columns = [
-  { title: '任务ID', dataIndex: 'id', key: 'id' },
-  { title: '项目名称', dataIndex: 'title' },
+  { title: '任务ID', dataIndex: 'id', key: 'id', width: 140 },
+  { title: '项目名称', dataIndex: 'title', width: 200 },
   { title: '任务进度', dataIndex: 'progress', scopedSlots: { customRender: 'progress' }},
   { title: '扫码', scopedSlots: { customRender: 'scan'}, width: 140 },
   { title: '详情', scopedSlots: { customRender: 'info'}, width: 140 },
@@ -72,7 +72,7 @@ export default {
       this.editModal1Visible = true
     },
     saveEditModal() {
-      
+
     },
     setEditModal1Visible(isModalVisible = false) {
       this.editModal1Visible = isModalVisible

@@ -2,7 +2,7 @@
 <template>
   <div class="page-account">
     <a-card :bordered="false" class="shadow-md account-wrap">
-      <h3 class="text-2xl font-bold text-gray-800 mb-8" v-html="title"></h3>
+      <h3 class="text-2xl text-center font-bold text-gray-800 mb-8" v-html="title"></h3>
       <router-view/>
       <p v-if="this.$route.name === 'Login'"> 还没有账号? 点击 <router-link to="/account/reg">注册</router-link></p>
       <p v-else> 已有帐号? 点击 <router-link to="/account/login">登录</router-link></p>
