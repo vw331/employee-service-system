@@ -1,8 +1,7 @@
 const path = require('path')
-const htmlWepackPlugin = require('html-webpack-plugin')
 
-console.log( process.env   )
 module.exports = {
+  outputDir: process.env.VUE_APP_OUTPUTDIR,
   devServer: {
     disableHostCheck: true
   },

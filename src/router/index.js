@@ -13,15 +13,21 @@ const router = new VueRouter({
 })
 
 const baseTitle = document.title
+const isPhone = window.isMobile.phone
 
 // 前置守卫
 router.beforeEach((to, from, next) => {
+
+  // 如果是手机端访问，则跳转到手机端页面上
+  if( isPhone && to.name == 'Main' ){
+    next({ name: 'Mobile' })
+  }
+  
 
   if( to.path == '/logout' ){
     Modal.confirm({
       title: '确定要退出?',
       onOk() {
-        console.log('OK');
         next({ name: 'Login' })
       },
       onCancel() {

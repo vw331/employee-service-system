@@ -1,7 +1,7 @@
 <!--移动端layout-->
 <template>
   <div class="p-4">
-    <div class="bg-indigo-200	text-center p-4 mb-2">
+    <div v-show="this.$route.meta.showGlobalHeader" class="bg-indigo-200	text-center p-4 mb-2">
       <h3 class="text-md text-blue-800"><a-badge color="orange"/>欢迎使用{{title}}</h3>
       <div class="mt-4">
         <a-dropdown>
@@ -27,6 +27,9 @@ export default {
     return {
       title
     }
+  },
+  mounted() {
+    console.log( this.$route.meta )
   },
   methods: {
     handleMenuClick() {

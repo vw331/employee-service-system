@@ -11,17 +11,13 @@ export const routes = [
         path: 'login',
         name: 'Login',
         component: () => import('@/views/account/Login'),
-        meta: {
-          title: '登录'
-        },
+        meta: { title: '登录' },
       },
       {
         path: 'reg',
         name: 'Reg',
         component: () => import('@/views/account/Register'),
-        meta: {
-          title: '注册'
-        },
+        meta: { title: '注册' },
       }
     ]
   },{  //移动端
@@ -32,11 +28,14 @@ export const routes = [
     children: [
       {
         path: 'shopping-list',
-        name: 'ShoppingList',
+        name: 'MobileShoppingList',
         component: () => import('@/views/m.project/ShoppingList'),
-        meta: {
-          title: '购买列表'
-        }
+        meta: { title: '购买列表', showGlobalHeader: true }
+      },{
+        path: ':id/scan-records',
+        name: 'MobileScanRecords',
+        component: () => import('@/views/m.project/ScanRecords'),
+        meta: { title: '扫码记录', showGlobalHeader: false }
       }
     ]
   },{

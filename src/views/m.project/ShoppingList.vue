@@ -6,7 +6,7 @@
       item-layout="horizontal"
       :data-source="data"
     >
-      <a-list-item class="list-item" slot="renderItem" slot-scope="item">
+      <a-list-item class="list-item" slot="renderItem" slot-scope="item" @click="handleItemClick(item)">
         <a-list-item-meta>
           <a slot="title" href="https://www.antdv.com/">{{ item.title }}</a>
           <a-avatar
@@ -46,6 +46,12 @@ export default {
   data() {
     return {
       data
+    }
+  },
+  methods: {
+    handleItemClick(record) {
+      console.log( record )
+      this.$router.push({ name: 'MobileScanRecords', params: { id: record.id }})
     }
   }
 }
