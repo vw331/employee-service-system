@@ -12,3 +12,5 @@ export {  default as AlipayOutline } from '@ant-design/icons/lib/outline/AlipayO
 export { default as QrcodeOutline } from '@ant-design/icons/lib/outline/QrcodeOutline'
 export {  default as EditOutline } from '@ant-design/icons/lib/outline/EditOutline'
 export {  default as CloseOutline  } from '@ant-design/icons/lib/outline/CloseOutline'
+export {  default as MenuUnfoldOutline  } from '@ant-design/icons/lib/outline/MenuUnfoldOutline'
+export {  default as MoreOutline  } from '@ant-design/icons/lib/outline/MoreOutline'
