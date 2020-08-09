@@ -26,7 +26,6 @@ import {
   List,
   Avatar,
   Breadcrumb,
-  Steps,
   Spin,
   Menu,
   Drawer,
@@ -34,11 +33,6 @@ import {
   Alert,
   Tag,
   Divider,
-  DatePicker,
-  TimePicker,
-  Upload,
-  Progress,
-  Skeleton,
   Popconfirm,
   PageHeader,
   Result,
@@ -72,7 +66,6 @@ Vue.use(Dropdown)
 Vue.use(List)
 Vue.use(Avatar)
 Vue.use(Breadcrumb)
-Vue.use(Steps)
 Vue.use(Spin)
 Vue.use(Menu)
 Vue.use(Drawer)
@@ -80,11 +73,6 @@ Vue.use(Tooltip)
 Vue.use(Alert)
 Vue.use(Tag)
 Vue.use(Divider)
-Vue.use(DatePicker)
-Vue.use(TimePicker)
-Vue.use(Upload)
-Vue.use(Progress)
-Vue.use(Skeleton)
 Vue.use(Popconfirm)
 Vue.use(PageHeader)
 Vue.use(Result)
